@@ -10,7 +10,7 @@ public class Game {
 	public static Scanner console = new Scanner(System.in);
 	public static Board chessBoard = new Board();
 	public static Pieces chessPiece = new King();
-	public static int selectPieceX, selectPieceY, playerTurn = 0;
+	public static int selectPieceX, selectPieceY, moveToX, moveToY, playerTurn = 0;
 	public static boolean gameOver = false;
 	
 	public static void main(String[] args) {
@@ -29,6 +29,14 @@ public class Game {
 				
 				// select the piece
 				chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]);
+				
+				// select where the piece go
+				System.out.print("Move to X: ");
+				moveToX = console.nextInt();
+				System.out.print("Move to Y: ");
+				moveToY = console.nextInt();
+				chessPiece.movePiece(chessBoard, moveToX, moveToY);
+				
 				System.out.println("=====================================================");
 			}else {
 				// prompt input
@@ -40,6 +48,14 @@ public class Game {
 				
 				// select the piece
 				chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]);
+				
+				// select where the piece go
+				System.out.print("Move to X: ");
+				moveToX = console.nextInt();
+				System.out.print("Move to Y: ");
+				moveToY = console.nextInt();
+				chessPiece.movePiece(chessBoard, moveToX, moveToY);
+				
 				System.out.println("=====================================================");
 			} // if..else
 

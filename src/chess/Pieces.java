@@ -54,7 +54,9 @@ public abstract class Pieces {
 		
 	} // selectPiece()
 	
-	public void movePiece() {
+	public void movePiece(Board board, int moveX, int moveY) {
+		board.boardArray[moveX][moveY] = board.boardArray[x][y];
+		board.boardArray[x][y] = '-';
 	} // movePiece()
 	
 	// Abstract methods
