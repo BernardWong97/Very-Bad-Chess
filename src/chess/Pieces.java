@@ -18,7 +18,7 @@ public abstract class Pieces {
 	
 	// Implement methods
 	// method select the piece player chose
-	public void selectPiece(int selectPieceX, int selectPieceY, char selectedPiece) {
+	public boolean selectPiece(int selectPieceX, int selectPieceY, char selectedPiece) {
 		x = selectPieceX;
 		y = selectPieceY;
 		
@@ -49,9 +49,10 @@ public abstract class Pieces {
 				System.out.println("Pawn (" + x + ", " + y + ")");
 				break;
 			default:
-				System.out.println("No chess piece on this coordinates");
+				System.out.println("No chess piece on this coordinates, please try again.");
+				return false;
 		} // switch
-		
+		return true;
 	} // selectPiece()
 	
 	public void movePiece(Board board, int moveX, int moveY) {

@@ -27,14 +27,25 @@ public class Game {
 				System.out.print("Y: ");
 				selectPieceY = console.nextInt();
 				
-				// select the piece
-				chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]);
+				// select the piece and validate if it is a valid piece for player 1
+				if(selectPieceX > 8 || selectPieceX < 1 || selectPieceY > 8 || selectPieceY < 1) {
+					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					continue;
+				} // if validate if coordinates is in the chess board
+				if(chessBoard.validatePiece(playerTurn, chessBoard.boardArray[selectPieceX][selectPieceY]) == false)
+					continue;
+				if(chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]) == false)
+					continue;
 				
 				// select where the piece go
 				System.out.print("Move to X: ");
 				moveToX = console.nextInt();
 				System.out.print("Move to Y: ");
 				moveToY = console.nextInt();
+				if(moveToX > 8 || moveToX < 1 || moveToY > 8 || moveToY < 1) {
+					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					continue;
+				} // if validate if coordinates is in the chess board
 				chessPiece.movePiece(chessBoard, moveToX, moveToY);
 				
 				System.out.println("=====================================================");
@@ -46,8 +57,11 @@ public class Game {
 				System.out.print("Y: ");
 				selectPieceY = console.nextInt();
 				
-				// select the piece
-				chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]);
+				// select the piece and validate if it is a valid piece for player 1
+				if(chessBoard.validatePiece(playerTurn, chessBoard.boardArray[selectPieceX][selectPieceY]) == false)
+					continue;
+				if(chessPiece.selectPiece(selectPieceX, selectPieceY, chessBoard.boardArray[selectPieceX][selectPieceY]) == false)
+					continue;
 				
 				// select where the piece go
 				System.out.print("Move to X: ");

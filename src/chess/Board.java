@@ -96,14 +96,34 @@ public class Board {
 	public void displayPlayer1() {
 		System.out.println("=====================================================");
 		System.out.println("-Player 1 Turn-");
-		System.out.println("Please enter the piece coordinates you want to select");
+		System.out.println("Please enter the piece coordinates you want to select(1-8)");
 	} // displayPlayer1
 	
 	// method prompt player 2
 	public void displayPlayer2() {
 		System.out.println("=====================================================");
 		System.out.println("-Player 2 Turn-");
-		System.out.println("Please enter the piece coordinates you want to select");
+		System.out.println("Please enter the piece coordinates you want to select(1-8)");
 	} // displayPlayer2
+	
+	// method validate player 1 or 2
+	public boolean validatePiece(int turn, char pieceType) {
+		// Player 1
+		if(turn == 0) {
+			if(Character.isLowerCase(pieceType)) {
+				System.out.println("You have chosen a Piece belongs to Player 2, please try again.");
+				System.out.println("=====================================================");
+				return false;
+			} // if pieceType belongs to player 2
+		}
+		else if(turn == 1){
+			if(Character.isUpperCase(pieceType)) {
+				System.out.println("You have chosen a Piece belongs to Player 1, please try again.");
+				System.out.println("=====================================================");
+				return false;
+			} // if pieceType belongs to player 1
+		} // if player turn
+		return true;
+	} // validatePiece()
 
 } // class
