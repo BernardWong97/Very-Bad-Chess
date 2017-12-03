@@ -4,6 +4,7 @@
 package chess;
 
 public class Pawn extends Pieces implements PieceType{
+	int playerTurn = Game.playerTurn;
 
 	// Constructors
 	public Pawn() {
@@ -15,7 +16,28 @@ public class Pawn extends Pieces implements PieceType{
 
 	// Override abstract methods
 	@Override
-	public boolean isPathValid() {
+	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
+		if(playerTurn % 2 == 0) {
+			if(toY == fromY + 1) {
+				return true;
+			}
+			
+			if(fromY == 7) {
+				if(toY == fromY + 2 && toY == fromY + 1) {
+					return true;
+				}
+			}
+		} else {
+			if(toY == fromY - 1) {
+				return true;
+			}
+			
+			if(fromY == 2) {
+				if(toY == fromY - 2 && toY == fromY - 1) {
+					return true;
+				}
+			}
+		}
 		return false;
 	} // isPathValid()
 

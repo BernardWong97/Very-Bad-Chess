@@ -5,7 +5,7 @@ package chess;
 
 public abstract class Pieces {
 	// Data members
-	int x, y;
+	private int x, y;
 
 	// Constructors
 	public Pieces() {
@@ -15,6 +15,23 @@ public abstract class Pieces {
 		this.x = x;
 		this.y = y;
 	}
+	
+	// get and set
+	public int getX() {
+		return x;
+	} //getX()
+	
+	public int getY() {
+		return y;
+	} //getY()
+	
+	public void setX(int x) {
+		this.x = x;
+	} //getX()
+	
+	public void setY(int y) {
+		this.y = y;
+	} //setY()
 	
 	// Implement methods
 	// method select the piece player chose
@@ -26,27 +43,27 @@ public abstract class Pieces {
 		switch (selectedPiece) {
 			case 'K':
 			case 'k':
-				System.out.println("King (" + x + ", " + y + ")");
+				System.out.println("King (" + getX() + ", " + getY() + ")");
 				break;
 			case 'Q':
 			case 'q':
-				System.out.println("Queen (" + x + ", " + y + ")");
+				System.out.println("Queen (" + getX() + ", " + getY() + ")");
 				break;
 			case 'B':
 			case 'b':
-				System.out.println("Bishop (" + x + ", " + y + ")");
+				System.out.println("Bishop (" + getX() + ", " + getY() + ")");
 				break;
 			case 'N':
 			case 'n':
-				System.out.println("Knight (" + x + ", " + y + ")");
+				System.out.println("Knight (" + getX() + ", " + getY() + ")");
 				break;
 			case 'R':
 			case 'r':
-				System.out.println("Rook (" + x + ", " + y + ")");
+				System.out.println("Rook (" + getX() + ", " + getY() + ")");
 				break;
 			case 'P':
 			case 'p':
-				System.out.println("Pawn (" + x + ", " + y + ")");
+				System.out.println("Pawn (" + getX() + ", " + getY() + ")");
 				break;
 			default:
 				System.out.println("No chess piece on this coordinates, please try again.");
@@ -56,10 +73,10 @@ public abstract class Pieces {
 	} // selectPiece()
 	
 	public void movePiece(Board board, int moveX, int moveY) {
-		board.boardArray[moveX][moveY] = board.boardArray[x][y];
-		board.boardArray[x][y] = '-';
+		board.boardArray[moveX][moveY] = board.boardArray[getX()][getY()];
+		board.boardArray[getX()][getY()] = '-';
 	} // movePiece()
 	
 	// Abstract methods
-	public abstract boolean isPathValid();
+	public abstract boolean isPathValid(int fromX, int fromY, int toX, int toY);
 } // abstract class

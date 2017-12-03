@@ -15,7 +15,10 @@ public class Bishop extends Pieces implements PieceType{
 
 	// Override abstract methods
 	@Override
-	public boolean isPathValid() {
+	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
+        if(toX - fromX == toY - fromY) {
+        	return true;
+        } 
 		return false;
 	} // isPathValid()
 

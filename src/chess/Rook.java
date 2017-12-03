@@ -15,8 +15,14 @@ public class Rook extends Pieces implements PieceType{
 
 	// Override abstract methods
 	@Override
-	public boolean isPathValid() {
-		return false;
+	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
+        if(toX == fromX) {
+        	return true;
+        }
+        if(toY == fromY) {
+        	return true;
+        }
+        return false;
 	} // isPathValid()
 
 	// Override interface methods

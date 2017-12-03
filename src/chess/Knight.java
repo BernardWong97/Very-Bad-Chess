@@ -15,7 +15,13 @@ public class Knight extends Pieces implements PieceType{
 
 	// Override abstract methods	
 	@Override
-	public boolean isPathValid() {
+	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
+        if(toX != fromX - 1 && toX != fromX + 1 && toX != fromX + 2 && toX != fromX - 2) {
+        	return false;
+        }
+        if(toY != fromY - 2 && toY != fromY + 2 && toY != fromY - 1 && toY != fromY + 1) {
+        	return false;
+        }   
 		return false;
 	} // isPathValid()
 
