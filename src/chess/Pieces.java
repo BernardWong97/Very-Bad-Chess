@@ -90,21 +90,27 @@ public abstract class Pieces {
 		case 'K':
 		case 'k':
 			isValid = new King().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		case 'Q':
 		case 'q':
 			isValid = new Queen().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		case 'B':
 		case 'b':
 			isValid = new Bishop().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		case 'N':
 		case 'n':
 			isValid = new Knight().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		case 'R':
 		case 'r':
 			isValid = new Rook().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		case 'P':
 		case 'p':
 			isValid = new Pawn().isPathValid(getX(), getY(), moveX, moveY);
+			break;
 		} // switch
 		
 		if(isValid) {
@@ -112,7 +118,7 @@ public abstract class Pieces {
 			board.boardArray[getX()][getY()] = '-';
 		}
 		else {
-			System.out.println("Invalid move, please try again");
+			System.out.println("Invalid move, please try again.");
 			System.out.println("=====================================================");
 			return false;
 		} // if..else
