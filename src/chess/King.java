@@ -16,9 +16,13 @@ public class King extends Pieces implements PieceType{
 	// Override abstract methods
 	@Override
 	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
-		if(toX > fromX + 1 || toX < fromX - 1 || toY > fromY + 1 || toY < fromY - 1) {
+		// current piece position false
+        if(toX == fromX && toY == fromY)
+            return false;
+        // only can move 1 step each directions
+		if(toX > fromX + 1 || toX < fromX - 1 || toY > fromY + 1 || toY < fromY - 1)
 			return false;
-		}
+
 		return true;
 	} // isPathValid()
 

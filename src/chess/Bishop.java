@@ -16,9 +16,12 @@ public class Bishop extends Pieces implements PieceType{
 	// Override abstract methods
 	@Override
 	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
-        if(toX - fromX == toY - fromY) {
+		// current piece position false
+        if(toX == fromX && toY == fromY)
+            return false;
+        // can move diagonally
+        if(toX - fromX == toY - fromY)
         	return true;
-        } 
 		return false;
 	} // isPathValid()
 

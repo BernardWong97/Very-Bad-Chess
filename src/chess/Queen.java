@@ -16,15 +16,19 @@ public class Queen extends Pieces implements PieceType{
 	// Override abstract methods
 	@Override
 	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
-		if(toX == fromX) {
+		// current piece position false
+        if(toX == fromX && toY == fromY)
+            return false;
+        // can move horizontally
+		if(toX == fromX)
 			return true;
-		}
-		if(toY == fromY) {
+		// can move vertically
+		if(toY == fromY)
 			return true;
-		}
-		if(toX - fromX == toY - fromY) {
+		// can move diagonally
+		if(toX - fromX == toY - fromY)
 			return true;
-		}
+		
 		return false;
 	} // isPathValid()
 

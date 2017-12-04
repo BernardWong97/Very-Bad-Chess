@@ -46,7 +46,10 @@ public class Game {
 					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
 					continue;
 				} // if validate if coordinates is in the chess board
-				chessPiece.movePiece(chessBoard, moveToX, moveToY);
+				
+				// if validate if movement is valid
+				if(chessPiece.movePiece(chessBoard, moveToX, moveToY) == false)
+					continue;
 				
 				System.out.println("=====================================================");
 			}else {
@@ -68,7 +71,14 @@ public class Game {
 				moveToX = console.nextInt();
 				System.out.print("Move to Y: ");
 				moveToY = console.nextInt();
-				chessPiece.movePiece(chessBoard, moveToX, moveToY);
+				if(moveToX > 8 || moveToX < 1 || moveToY > 8 || moveToY < 1) {
+					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					continue;
+				} // if validate if coordinates is in the chess board
+				
+				// if validate if movement is valid
+				if(chessPiece.movePiece(chessBoard, moveToX, moveToY) == false)
+					continue;
 				
 				System.out.println("=====================================================");
 			} // if..else

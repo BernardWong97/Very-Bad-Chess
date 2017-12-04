@@ -6,6 +6,7 @@ package chess;
 public abstract class Pieces {
 	// Data members
 	private int x, y;
+	private char selectedPiece;
 
 	// Constructors
 	public Pieces() {
@@ -25,6 +26,10 @@ public abstract class Pieces {
 		return y;
 	} //getY()
 	
+	public char getSelectedPiece() {
+		return selectedPiece;
+	} // getSelectedPiece()
+	
 	public void setX(int x) {
 		this.x = x;
 	} //getX()
@@ -33,14 +38,19 @@ public abstract class Pieces {
 		this.y = y;
 	} //setY()
 	
+	public void setSelectedPiece(char selectedPiece) {
+		this.selectedPiece = selectedPiece;
+	} // setSelectedPiece
+	
 	// Implement methods
 	// method select the piece player chose
 	public boolean selectPiece(int selectPieceX, int selectPieceY, char selectedPiece) {
-		x = selectPieceX;
-		y = selectPieceY;
+		setX(selectPieceX);
+		setY(selectPieceY);
+		setSelectedPiece(selectedPiece);
 		
 		System.out.print("You have selected: ");
-		switch (selectedPiece) {
+		switch (getSelectedPiece()) {
 			case 'K':
 			case 'k':
 				System.out.println("King (" + getX() + ", " + getY() + ")");
@@ -72,9 +82,42 @@ public abstract class Pieces {
 		return true;
 	} // selectPiece()
 	
-	public void movePiece(Board board, int moveX, int moveY) {
-		board.boardArray[moveX][moveY] = board.boardArray[getX()][getY()];
-		board.boardArray[getX()][getY()] = '-';
+	public boolean movePiece(Board board, int moveX, int moveY) {
+		boolean isValid = false;
+		
+		// check valid move through each class
+		switch(getSelectedPiece()) {
+		case 'K':
+		case 'k':
+			isValid = new King().isPathValid(getX(), getY(), moveX, moveY);
+		case 'Q':
+		case 'q':
+			isValid = new Queen().isPathValid(getX(), getY(), moveX, moveY);
+		case 'B':
+		case 'b':
+			isValid = new Bishop().isPathValid(getX(), getY(), moveX, moveY);
+		case 'N':
+		case 'n':
+			isValid = new Knight().isPathValid(getX(), getY(), moveX, moveY);
+		case 'R':
+		case 'r':
+			isValid = new Rook().isPathValid(getX(), getY(), moveX, moveY);
+		case 'P':
+		case 'p':
+			isValid = new Pawn().isPathValid(getX(), getY(), moveX, moveY);
+		} // switch
+		
+		if(isValid) {
+			board.boardArray[moveX][moveY] = board.boardArray[getX()][getY()];
+			board.boardArray[getX()][getY()] = '-';
+		}
+		else {
+			System.out.println("Invalid move, please try again");
+			System.out.println("=====================================================");
+			return false;
+		} // if..else
+		
+		return true;
 	} // movePiece()
 	
 	// Abstract methods
