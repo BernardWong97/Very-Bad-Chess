@@ -23,24 +23,28 @@ public class Pawn extends Pieces implements PieceType{
         
         // if player 1 or 2
 		if(playerTurn % 2 == 0) {
-			// can move 1 step forward
-			if(toY == fromY + 1)
-				return true;
 			
-			// 1st step can move 2 step forward
-			if(fromY == 7)
-				if(toY == fromY + 2 && toY == fromY + 1)
+			// 1st step can move 2 step forward else 1 step
+			if(fromX == 7) {
+				if((toX == fromX - 2 || toX == fromX - 1) && toY == fromY)
 					return true;
+			}
+			else {
+				if(toX == fromX - 1 && toY == fromY)
+					return true;
+			} // if..else fromX == 7
 		}
 		else {
-			// can move 1 step forward
-			if(toY == fromY - 1)
-				return true;
 			
-			// 1st step can move 2 step forward
-			if(fromY == 2) 
-				if(toY == fromY - 2 && toY == fromY - 1)
+			// 1st step can move 2 step forward else 1 step
+			if(fromX == 2)  {
+				if((toX == fromX + 2 || toX == fromX + 1) && toY == fromY)
 					return true;
+			}
+			else {
+				if(toX == fromX + 1 && toY == fromY)
+					return true;
+			} // if..else fromX == 2
 		} // if..else
 		
 		return false;
