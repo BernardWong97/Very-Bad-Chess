@@ -86,7 +86,7 @@ public abstract class Pieces {
 			default:
 				Game.error = "No chess piece on this coordinates, please try again.";
 				System.out.println(Game.error);
-				System.out.println("=====================================================");
+				System.out.println("=============================================================================");
 				return false;
 		} // switch
 		return true;
@@ -139,7 +139,7 @@ public abstract class Pieces {
 		else {
 			Game.error = "Invalid move, please try again.";
 			System.out.println(Game.error);
-			System.out.println("=====================================================");
+			System.out.println("=============================================================================");
 			return false;
 		} // if..else
 		

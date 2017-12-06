@@ -40,44 +40,73 @@ public class Board {
 		
 	} // createBoard()
 	
-	// Method 
+	// Method place pieces onto the board
 	private void placePieces() {
-		// create and place King objects
+		// Data members
+		int player1Piece;
+		int player2Piece;
+		char pieces1 = '-', pieces2 = '-';
+		
+		// Pieces objects
 		King kings = new King();
-		boardArray[8][5] = kings.pieceType(1);
-		boardArray[1][5] = kings.pieceType(2);
-		
-		// create and place Queen objects
 		Queen queens = new Queen();
-		boardArray[8][4] = queens.pieceType(1);
-		boardArray[1][4] = queens.pieceType(2);
-		
-		// create and place Bishop objects
 		Bishop bishops = new Bishop();
-		boardArray[8][3] = bishops.pieceType(1);
-		boardArray[8][6] = bishops.pieceType(1);
-		boardArray[1][3] = bishops.pieceType(2);
-		boardArray[1][6] = bishops.pieceType(2);
-		
-		// create and place Bishop objects
 		Knight knights = new Knight();
-		boardArray[8][2] = knights.pieceType(1);
-		boardArray[8][7] = knights.pieceType(1);
-		boardArray[1][2] = knights.pieceType(2);
-		boardArray[1][7] = knights.pieceType(2);
-		
-		// create and place Bishop objects
 		Rook rooks = new Rook();
-		boardArray[8][1] = rooks.pieceType(1);
-		boardArray[8][8] = rooks.pieceType(1);
-		boardArray[1][1] = rooks.pieceType(2);
-		boardArray[1][8] = rooks.pieceType(2);
-		
-		// create and place Pawn objects
 		Pawn pawns = new Pawn();
-		for(int i = 1; i < 9; i++) {
-			boardArray[7][i] = pawns.pieceType(1);
-			boardArray[2][i] = pawns.pieceType(2);
+		
+		// Iterate column
+		for(int i = 1; i <= 8; i++) {
+			// generate random pieces
+			player1Piece = (int)(Math.random() * 5 + 1);
+			player2Piece = (int)(Math.random() * 5 + 1);
+			switch(player1Piece) {
+				case 1:
+					pieces1 = queens.pieceType(1);
+					break;
+				case 2:
+					pieces1 = bishops.pieceType(1);
+					break;
+				case 3:
+					pieces1 = knights.pieceType(1);
+					break;
+				case 4:
+					pieces1 = rooks.pieceType(1);
+					break;
+				case 5:
+					pieces1 = pawns.pieceType(1);
+					break;
+			} // switch
+		
+			switch(player2Piece) {
+				case 1:
+					pieces2 = queens.pieceType(2);
+					break;
+				case 2:
+					pieces2 = bishops.pieceType(2);
+					break;
+				case 3:
+					pieces2 = knights.pieceType(2);
+					break;
+				case 4:
+					pieces2 = rooks.pieceType(2);
+					break;
+				case 5:
+					pieces2 = pawns.pieceType(2);
+					break;
+			} // switch
+		
+			// Place pieces onto the board
+			boardArray[8][i] = pieces1;
+			boardArray[7][i] = pieces1;
+			boardArray[1][i] = pieces2;
+			boardArray[2][i] = pieces2;
+			
+			// 5th column must be Kings
+			if(i == 5) {
+				boardArray[8][i] = kings.pieceType(1);
+				boardArray[1][i] = kings.pieceType(2);
+			} // if
 		} // for
 		
 	} // placePieces
@@ -92,16 +121,34 @@ public class Board {
 		} // for
 	} // displayBoard()
 	
+	// Method display legend
+	public void displayLegend() {
+		System.out.println("=============================================================================");
+		System.out.println("-------------------------Welcome to the Very Bad Chess-----------------------");
+		System.out.println("=============================================================================");
+		System.out.println("Very Bad Chess is just like chess, but with totally random pieces and 1 King.");
+		System.out.println("Legend:");
+		System.out.println("- Uppercases are Player 1 pieces and Lowercases are Player 2 pieces.");
+		System.out.println("- K/k is King.");
+		System.out.println("- Q/q is Queen.");
+		System.out.println("- B/b is Bishop.");
+		System.out.println("- N/n is Knight.");
+		System.out.println("- R/r is Rook.");
+		System.out.println("- P/p is Pawn.");
+		System.out.println("Good Luck & Have Fun.");
+		System.out.println("=============================================================================");
+	} // displayLegend()
+	
 	// method prompt player 1
 	public void displayPlayer1() {
-		System.out.println("=====================================================");
+		System.out.println("=============================================================================");
 		System.out.println("-Player 1 Turn-");
 		System.out.println("Please enter the piece coordinates you want to select(1-8)");
 	} // displayPlayer1
 	
 	// method prompt player 2
 	public void displayPlayer2() {
-		System.out.println("=====================================================");
+		System.out.println("=============================================================================");
 		System.out.println("-Player 2 Turn-");
 		System.out.println("Please enter the piece coordinates you want to select(1-8)");
 	} // displayPlayer2
@@ -112,14 +159,14 @@ public class Board {
 		if(turn == 0) {
 			if(Character.isLowerCase(pieceType)) {
 				System.out.println("You have chosen a Piece belongs to Player 2, please try again.");
-				System.out.println("=====================================================");
+				System.out.println("=============================================================================");
 				return false;
 			} // if pieceType belongs to player 2
 		}
 		else if(turn == 1){
 			if(Character.isUpperCase(pieceType)) {
 				System.out.println("You have chosen a Piece belongs to Player 1, please try again.");
-				System.out.println("=====================================================");
+				System.out.println("=============================================================================");
 				return false;
 			} // if pieceType belongs to player 1
 		} // if player turn
