@@ -12,6 +12,7 @@ public class Game {
 	public static Pieces chessPiece = new King();
 	public static int selectPieceX, selectPieceY, moveToX, moveToY, playerTurn = 0;
 	public static boolean gameOver = false;
+	public static String error = "Please enter 1 to 8 for coordinates only, try again.";
 	
 	public static void main(String[] args) {
 		// do..while game over stop loop
@@ -29,7 +30,8 @@ public class Game {
 				
 				// select the piece and validate if it is a valid piece for player 1
 				if(selectPieceX > 8 || selectPieceX < 1 || selectPieceY > 8 || selectPieceY < 1) {
-					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					System.out.println(error);
+					System.out.println("=====================================================");
 					continue;
 				} // if validate if coordinates is in the chess board
 				if(chessBoard.validatePiece(playerTurn, chessBoard.boardArray[selectPieceX][selectPieceY]) == false)
@@ -43,7 +45,7 @@ public class Game {
 				System.out.print("Move to Y: ");
 				moveToY = console.nextInt();
 				if(moveToX > 8 || moveToX < 1 || moveToY > 8 || moveToY < 1) {
-					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					System.out.println(error);
 					continue;
 				} // if validate if coordinates is in the chess board
 				
@@ -72,7 +74,8 @@ public class Game {
 				System.out.print("Move to Y: ");
 				moveToY = console.nextInt();
 				if(moveToX > 8 || moveToX < 1 || moveToY > 8 || moveToY < 1) {
-					System.out.println("Please enter 1 to 8 for coordinates only, try again.");
+					System.out.println(error);
+					System.out.println("=====================================================");
 					continue;
 				} // if validate if coordinates is in the chess board
 				

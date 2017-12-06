@@ -17,7 +17,7 @@ public abstract class Pieces {
 		this.y = y;
 	}
 	
-	// get and set
+	// gets and sets
 	public int getX() {
 		return x;
 	} //getX()
@@ -48,7 +48,7 @@ public abstract class Pieces {
 	
 	public void setSelectedPiece(char selectedPiece) {
 		this.selectedPiece = selectedPiece;
-	} // setSelectedPiece
+	} // setSelectedPiece()
 	
 	// Implement methods
 	// method select the piece player chose
@@ -84,7 +84,8 @@ public abstract class Pieces {
 				System.out.println("Pawn (" + getX() + ", " + getY() + ")");
 				break;
 			default:
-				System.out.println("No chess piece on this coordinates, please try again.");
+				Game.error = "No chess piece on this coordinates, please try again.";
+				System.out.println(Game.error);
 				return false;
 		} // switch
 		return true;
@@ -126,7 +127,7 @@ public abstract class Pieces {
 			board.boardArray[getX()][getY()] = '-';
 		}
 		else {
-			System.out.println("Invalid move, please try again.");
+			System.out.println(Game.error);
 			System.out.println("=====================================================");
 			return false;
 		} // if..else
