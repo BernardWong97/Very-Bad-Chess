@@ -127,6 +127,7 @@ public abstract class Pieces {
 			board.boardArray[getX()][getY()] = '-';
 		}
 		else {
+			Game.error = "Invalid move, please try again.";
 			System.out.println(Game.error);
 			System.out.println("=====================================================");
 			return false;

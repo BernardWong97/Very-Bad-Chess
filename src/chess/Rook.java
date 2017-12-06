@@ -35,6 +35,10 @@ public class Rook extends Pieces implements PieceType{
 				return false;
 			} // inner if
 		} // if player 1 / player 2
+		
+		// if route is blocked
+		if(isMoveBlocked(board, fromX, fromY, toX, toY) == true)
+			return false;
 			
         // can move horizontally
         if(toX == fromX)
@@ -54,5 +58,45 @@ public class Rook extends Pieces implements PieceType{
 		else
 			return 'r';
 	} // pieceType()
+	
+	// Check route clear
+	public boolean isMoveBlocked(Board board, int fromX,int fromY,int toX,int toY) {
+		int steps = Math.abs(toX - fromX);
+		
+		// if both X are same, use Y
+		if(toX == fromX) {
+			steps = Math.abs(toY - fromY);
+		} // if
+		
+		// iterate through steps
+		for(int i = 1; i < steps; i++) {
+			if(toX == fromX && toY < fromY) {
+				if(board.boardArray[fromX][fromY - i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if West
+			else if(toX == fromX && toY > fromY) {
+				if(board.boardArray[fromX][fromY + i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if East
+			else if(toX < fromX && toY == fromY) {
+				if(board.boardArray[fromX - i][fromY] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if North
+			else if(toX > fromX && toY == fromY) {
+				if(board.boardArray[fromX + i][fromY] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if South
+		} // for
+			  
+		return false;
+	} // isMoveBlocked()
 
 } // class
