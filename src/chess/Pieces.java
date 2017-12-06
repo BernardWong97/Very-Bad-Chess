@@ -126,6 +126,15 @@ public abstract class Pieces {
 		if(isValid) {
 			board.boardArray[moveX][moveY] = board.boardArray[getX()][getY()];
 			board.boardArray[getX()][getY()] = '-';
+			
+			// check if pawn can be promoted
+			if((board.boardArray[moveX][moveY] == 'P' || board.boardArray[moveX][moveY] == 'p') && (moveX == 1 || moveX == 8)) {
+				Pawn pawn = new Pawn();
+				boolean canPromote = false;
+				while(!canPromote){
+					canPromote = pawn.promotion(board, moveX, moveY);
+				} // while
+			} // if
 		}
 		else {
 			Game.error = "Invalid move, please try again.";

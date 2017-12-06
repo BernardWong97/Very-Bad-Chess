@@ -83,7 +83,7 @@ public class Pawn extends Pieces implements PieceType{
 	} // pieceType()
 	
 	// Check route clear
-	public boolean isMoveBlocked(Board board, int fromX,int fromY,int toX,int toY) {
+	public boolean isMoveBlocked(Board board, int fromX,int fromY,int toX, int toY) {
 		int steps = Math.abs(toX - fromX);
 		
 		// if both X are same, use Y
@@ -109,5 +109,62 @@ public class Pawn extends Pieces implements PieceType{
 			  
 		return false;
 	} // isMoveBlocked()
+	
+	// last row promotion
+	public boolean promotion(Board board, int toX, int toY) {
+		char promoteTo;
+		
+		// if player 1/2
+		if(getPlayerTurn() % 2 == 0) {
+			// prompt user input promote to what kind of piece
+			System.out.println("Your Pawn (" + toX + "," + toY + ") can be promoted!");
+			System.out.print("Please type the character you wish to promote to (Q/N/R/B): ");
+			promoteTo = Game.console.next().charAt(0);
+			
+			switch(promoteTo) {
+				case 'Q':
+					board.boardArray[toX][toY] = new Queen().pieceType(1);
+					return true;
+				case 'N':
+					board.boardArray[toX][toY] = new Knight().pieceType(1);
+					return true;
+				case 'R':
+					board.boardArray[toX][toY] = new Rook().pieceType(1);
+					return true;
+				case 'B':
+					board.boardArray[toX][toY] = new Bishop().pieceType(1);
+					return true;
+				default:
+					Game.error = "Only Q/N/R/B is allowed, please try again.";
+					System.out.println(Game.error);
+			} // switch
+		}
+		else {
+			// prompt user input promote to what kind of piece
+			System.out.println("Your Pawn (" + toX + "," + toY + ") can be promoted!");
+			System.out.print("Please type the character you wish to promote to (q/n/r/b): ");
+			promoteTo = Game.console.next().charAt(0);
+			
+			switch(promoteTo) {
+				case 'q':
+					board.boardArray[toX][toY] = new Queen().pieceType(1);
+					return true;
+				case 'n':
+					board.boardArray[toX][toY] = new Knight().pieceType(1);
+					return true;
+				case 'r':
+					board.boardArray[toX][toY] = new Rook().pieceType(1);
+					return true;
+				case 'b':
+					board.boardArray[toX][toY] = new Bishop().pieceType(1);
+					return true;
+				default:
+					Game.error = "Only Q/N/R/B is allowed, please try again.";
+					System.out.println(Game.error);
+			} // switch
+		} // if..else
+		
+		return false;
+	} // promotion()
 
 } // class
