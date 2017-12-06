@@ -35,7 +35,7 @@ public class Rook extends Pieces implements PieceType{
 				return false;
 			} // inner if
 		} // if player 1 / player 2
-		
+			
         // can move horizontally
         if(toX == fromX)
         	return true;

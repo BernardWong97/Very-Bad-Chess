@@ -35,6 +35,10 @@ public class Bishop extends Pieces implements PieceType{
 				return false;
 			} // inner if
 		} // if player 1 / player 2
+		
+		// if route is blocked
+		if(isMoveBlocked(board, fromX, fromY, toX, toY) == true)
+			return false;
         
         // can move diagonally
         if(Math.abs(toX - fromX) == Math.abs(toY - fromY))
@@ -51,5 +55,40 @@ public class Bishop extends Pieces implements PieceType{
 		else
 			return 'b';
 	} // pieceType()
+	
+	// Check route clear
+	public boolean isMoveBlocked(Board board, int fromX,int fromY,int toX,int toY) {
+		int steps = Math.abs(toX - fromX);
+		
+		// iterate through steps
+		for(int i = 1; i < steps; i++) {
+			if(toX < fromX && toY > fromY) {
+				if(board.boardArray[fromX - i][fromY + i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if NorthEast
+			else if(toX < fromX && toY < fromY) {
+				if(board.boardArray[fromX - i][fromY - i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if NorthWest
+			else if(toX > fromX && toY < fromY) {
+				if(board.boardArray[fromX + i][fromY + i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if SouthEast
+			else {
+				if(board.boardArray[fromX + i][fromY - i] != '-') {
+					Game.error = "Path is blocked, please try again.";
+					return true;
+				} // inner if
+			} // if..else SouthWest
+		} // for
+			  
+		return false;
+	} // isMoveBlocked()
 
 } // class
