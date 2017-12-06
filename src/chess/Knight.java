@@ -15,10 +15,21 @@ public class Knight extends Pieces implements PieceType{
 
 	// Override abstract methods	
 	@Override
-	public boolean isPathValid(int fromX, int fromY, int toX, int toY) {
+	public boolean isPathValid(Board board, int fromX, int fromY, int toX, int toY) {
 		// current piece position false
         if(toX == fromX && toY == fromY)
             return false;
+        
+		// player can't capture own pieces
+		if(getPlayerTurn() % 2 == 0) {
+			if(Character.isUpperCase(board.boardArray[toX][toY]))
+				return false;
+		}
+		else{
+			if(Character.isLowerCase(board.boardArray[toX][toY]))
+				return false;
+		} // if player 1 / player 2
+        
         // move L shape
         if(toX != fromX - 1 && toX != fromX + 1 && toX != fromX + 2 && toX != fromX - 2)
         	return false;

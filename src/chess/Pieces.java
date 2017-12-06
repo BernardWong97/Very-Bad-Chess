@@ -5,7 +5,7 @@ package chess;
 
 public abstract class Pieces {
 	// Data members
-	private int x, y;
+	private int x, y, playerTurn = Game.playerTurn;;
 	private char selectedPiece;
 
 	// Constructors
@@ -26,6 +26,10 @@ public abstract class Pieces {
 		return y;
 	} //getY()
 	
+	public int getPlayerTurn() {
+		return playerTurn;
+	} //getY()
+	
 	public char getSelectedPiece() {
 		return selectedPiece;
 	} // getSelectedPiece()
@@ -37,6 +41,10 @@ public abstract class Pieces {
 	public void setY(int y) {
 		this.y = y;
 	} //setY()
+	
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
+	} //setPlayerTurn()
 	
 	public void setSelectedPiece(char selectedPiece) {
 		this.selectedPiece = selectedPiece;
@@ -89,27 +97,27 @@ public abstract class Pieces {
 		switch(getSelectedPiece()) {
 		case 'K':
 		case 'k':
-			isValid = new King().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new King().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		case 'Q':
 		case 'q':
-			isValid = new Queen().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new Queen().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		case 'B':
 		case 'b':
-			isValid = new Bishop().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new Bishop().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		case 'N':
 		case 'n':
-			isValid = new Knight().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new Knight().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		case 'R':
 		case 'r':
-			isValid = new Rook().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new Rook().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		case 'P':
 		case 'p':
-			isValid = new Pawn().isPathValid(getX(), getY(), moveX, moveY);
+			isValid = new Pawn().isPathValid(board, getX(), getY(), moveX, moveY);
 			break;
 		} // switch
 		
@@ -127,5 +135,5 @@ public abstract class Pieces {
 	} // movePiece()
 	
 	// Abstract methods
-	public abstract boolean isPathValid(int fromX, int fromY, int toX, int toY);
+	public abstract boolean isPathValid(Board board, int fromX, int fromY, int toX, int toY);
 } // abstract class
