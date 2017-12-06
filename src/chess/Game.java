@@ -97,12 +97,46 @@ public class Game {
 			} // if..else
 
 			playerTurn++; // increment player's turn
-			if(playerTurn == 10) gameOver = true; //test
+			checkGameOver();
 		} while(gameOver != true); // do..while
 		
 		// Game Over output
-		System.out.println("Game Over!");
+		if(checkGameOver()) {
+			chessBoard.displayBoard();
+			System.out.println("=====================================================");
+			System.out.println(error);
+		} // if
 		
 	} // main
+	
+	public static boolean checkGameOver() {
+		int i;
+		boolean p1Alive = false, p2Alive = false;
+		
+		// Iterate through the board
+		for(i = 0; i < chessBoard.boardArray.length; i++) {
+			for(int j = 0; j < chessBoard.boardArray.length; j++) {
+				// check if player's king is still alive
+				if(chessBoard.boardArray[i][j] == 'K')
+					p1Alive = true;
+				if(chessBoard.boardArray[i][j] == 'k')
+					p2Alive = true;		
+			} // inner for
+		} // for
+		
+		// if not, announce Game Over
+		if(p1Alive == false) {
+			error = "---Game Over! Player 2 Wins!---";
+			gameOver = true;
+			return true;
+		} // if
+		if(p2Alive == false) {
+			gameOver = true;
+			error = "---Game Over! Player 1 Wins!---";
+			return true;
+		} // if
+		
+		return false;
+	} // checkGameOver()
 
 } // class
