@@ -108,6 +108,7 @@ public class Game {
 			chessBoard.displayBoard();
 			System.out.println("=============================================================================");
 			System.out.println(error);
+			System.out.println("=============================================================================");
 		} // if
 		
 	} // main
@@ -129,13 +130,13 @@ public class Game {
 		
 		// if not, announce Game Over
 		if(p1Alive == false) {
-			error = "---Game Over! Player 2 Wins!---";
+			error = "--------------------------Game Over! Player 2 Wins!--------------------------";
 			gameOver = true;
 			return true;
 		} // if
 		if(p2Alive == false) {
 			gameOver = true;
-			error = "---Game Over! Player 1 Wins!---";
+			error = "--------------------------Game Over! Player 1 Wins!--------------------------";
 			return true;
 		} // if
 		
